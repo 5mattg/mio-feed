@@ -1,0 +1,17 @@
+# Formato: Cartella | Nome fonte | URL del feed
+# Le righe che iniziano con # sono commenti e vengono ignorate.
+
+Rock e metal | Blabbermouth | https://blabbermouth.net/feed
+Rock e metal | Loudwire | https://loudwire.com/feed/
+Rock e metal | Metal Injection | https://metalinjection.net/feed
+Rock e metal | Kerrang! | https://www.kerrang.com/feed
+Rock e metal | Angry Metal Guy | https://www.angrymetalguy.com/feed/
+
+Italia | Metalitalia | https://www.metalitalia.com/feed/
+Italia | Rockol | https://www.rockol.it/rss/news
+Italia | Rockit | https://www.rockit.it/rss
+Italia | Rolling Stone Italia | https://www.rollingstone.it/feed/
+
+Pop e generalista | Pitchfork news | https://pitchfork.com/feed/feed-news/rss
+Pop e generalista | Pitchfork recensioni | https://pitchfork.com/feed/feed-album-reviews/rss
+Pop e generalista | Billboard | https://www.billboard.com/feed/
