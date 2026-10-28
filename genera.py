@@ -1,4 +1,8 @@
-"""Legge i feed elencati in feeds.txt e genera la pagina index.html."""
+"""Legge i feed elencati in feeds.txt e genera la pagina index.html.
+
+Formato di ogni riga di feeds.txt:
+  Cartella | Nome | URL feed | parola1, parola2   (l'ultima parte e' facoltativa)
+"""
 import html
 import re
 from calendar import timegm
@@ -8,7 +12,7 @@ from zoneinfo import ZoneInfo
 import feedparser
 
 MAX_PER_FONTE = 6        # articoli massimi per ogni fonte
-MAX_PER_CARTELLA = 40    # articoli massimi per ogni cartella
+MAX_PER_CARTELLA = 60    # articoli massimi per ogni cartella
 MAX_GIORNI = 21          # ignora articoli piu' vecchi di tanti giorni
 FUSO = ZoneInfo("Europe/Rome")
 MESI = ["gen", "feb", "mar", "apr", "mag", "giu",
@@ -24,6 +28,8 @@ def leggi_elenco(percorso="feeds.txt"):
                 continue
             parti = [p.strip() for p in riga.split("|")]
             if len(parti) == 3:
+                parti.append("")  # nessun filtro
+            if len(parti) == 4:
                 feeds.append(parti)
             else:
                 print(f"Riga ignorata (formato errato): {riga}")
@@ -38,6 +44,15 @@ def pulisci(testo, limite=220):
     return testo
 
 
+def crea_filtro(testo):
+    """Trasforma 'DC, Batman' in un filtro che cerca quelle parole intere."""
+    parole = [p.strip() for p in testo.split(",") if p.strip()]
+    if not parole:
+        return None
+    modello = "|".join(r"\b" + re.escape(p) + r"\b" for p in parole)
+    return re.compile(modello, re.IGNORECASE)
+
+
 def data_voce(voce):
     t = voce.get("published_parsed") or voce.get("updated_parsed")
     if not t:
@@ -48,7 +63,8 @@ def data_voce(voce):
 def raccogli():
     categorie, errori = {}, []
     limite = datetime.now(timezone.utc) - timedelta(days=MAX_GIORNI)
-    for categoria, nome, url in leggi_elenco():
+    for categoria, nome, url, parole in leggi_elenco():
+        filtro = crea_filtro(parole)
         d = feedparser.parse(url, agent="Mozilla/5.0 (mio-feed)")
         if not d.entries:
             errori.append(f"{nome} -> {url}")
@@ -58,6 +74,11 @@ def raccogli():
             quando = data_voce(v)
             if quando < limite or not v.get("link"):
                 continue
+            if filtro:
+                tag = " ".join(t.get("term", "") for t in v.get("tags", []))
+                cercato = f'{v.get("title", "")} {pulisci(v.get("summary", ""), 10**6)} {tag}'
+                if not filtro.search(cercato):
+                    continue
             voci.append({
                 "titolo": pulisci(v.get("title", "(senza titolo)"), 160),
                 "link": v["link"],
