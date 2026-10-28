@@ -16,7 +16,7 @@ Cronaca | Rivista Studio | https://www.rivistastudio.com/feed/
 
 Sport | L'Ultimo Uomo | https://www.ultimouomo.com/feed/
 Sport | Rivista Undici | https://www.rivistaundici.com/feed/
-Sport | The Ringer NBA | https://www.theringer.com/rss/nba/index.xml
+Sport | The Ringer | https://www.theringer.com/rss/index.xml | NBA, basketball
 Sport | Ubitennis | https://www.ubitennis.com/feed/
 Sport | The Race | https://www.the-race.com/feed/
 Sport | Motorsport.com Italia F1 | https://it.motorsport.com/rss/f1/news/
