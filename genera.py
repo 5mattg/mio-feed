@@ -5,6 +5,8 @@ Formato di ogni riga di feeds.txt:
 """
 import html
 import re
+import urllib.request
+from urllib.parse import urljoin, urlparse
 from calendar import timegm
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
@@ -12,9 +14,11 @@ from zoneinfo import ZoneInfo
 import feedparser
 
 MAX_PER_FONTE = 6        # articoli massimi per ogni fonte
-MAX_PER_CARTELLA = 60    # articoli massimi per ogni cartella
+MAX_PER_CARTELLA = 40    # articoli massimi per ogni cartella
 MAX_GIORNI = 21          # ignora articoli piu' vecchi di tanti giorni
 FUSO = ZoneInfo("Europe/Rome")
+UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+      "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
 MESI = ["gen", "feb", "mar", "apr", "mag", "giu",
         "lug", "ago", "set", "ott", "nov", "dic"]
 
@@ -60,14 +64,45 @@ def data_voce(voce):
     return datetime.fromtimestamp(timegm(t), tz=timezone.utc)
 
 
+def scopri_feed(url):
+    """Se un feed non funziona, cerca nella pagina del sito l'indirizzo giusto."""
+    p = urlparse(url)
+    radice = f"{p.scheme}://{p.netloc}/"
+    trovati = []
+    for pagina in dict.fromkeys([url, radice]):
+        try:
+            req = urllib.request.Request(pagina, headers={"User-Agent": UA})
+            testo = urllib.request.urlopen(req, timeout=20).read(500000)
+            testo = testo.decode("utf-8", "ignore")
+        except Exception:
+            continue
+        for tag in re.findall(r"<link[^>]+>", testo, re.I):
+            if re.search(r"type=[\"']application/(rss|atom)\+xml", tag, re.I):
+                m = re.search(r"href=[\"']([^\"']+)", tag, re.I)
+                if m:
+                    alt = urljoin(pagina, html.unescape(m.group(1)))
+                    if "comment" not in alt.lower():
+                        trovati.append(alt)
+    return list(dict.fromkeys(trovati))
+
+
 def raccogli():
-    categorie, errori = {}, []
+    categorie, errori, suggerimenti = {}, [], []
     limite = datetime.now(timezone.utc) - timedelta(days=MAX_GIORNI)
     for categoria, nome, url, parole in leggi_elenco():
         filtro = crea_filtro(parole)
-        d = feedparser.parse(url, agent="Mozilla/5.0 (mio-feed)")
+        d = feedparser.parse(url, agent=UA)
         if not d.entries:
-            errori.append(f"{nome} -> {url}")
+            motivo = (f"HTTP {d.status}" if d.get("status")
+                      else str(d.get("bozo_exception", "nessuna risposta")))
+            for alt in scopri_feed(url):
+                d2 = feedparser.parse(alt, agent=UA)
+                if d2.entries:
+                    d = d2
+                    suggerimenti.append(f"{nome}: usa questo indirizzo -> {alt}")
+                    break
+        if not d.entries:
+            errori.append(f"{nome} -> {url} ({motivo})")
             continue
         voci = []
         for v in d.entries:
@@ -91,7 +126,7 @@ def raccogli():
     for c in categorie:
         categorie[c].sort(key=lambda x: x["quando"], reverse=True)
         categorie[c] = categorie[c][:MAX_PER_CARTELLA]
-    return categorie, errori
+    return categorie, errori, suggerimenti
 
 
 def formatta(dt):
@@ -150,11 +185,15 @@ def costruisci(categorie):
 
 
 if __name__ == "__main__":
-    categorie, errori = raccogli()
+    categorie, errori, suggerimenti = raccogli()
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(costruisci(categorie))
     totale = sum(len(v) for v in categorie.values())
     print(f"Pagina creata: {totale} articoli in {len(categorie)} cartelle.")
+    if suggerimenti:
+        print("FEED TROVATI AUTOMATICAMENTE (sostituisci l'indirizzo in feeds.txt):")
+        for x in suggerimenti:
+            print(" +", x)
     if errori:
         print("ATTENZIONE, feed non leggibili (controlla l'indirizzo):")
         for e in errori:
