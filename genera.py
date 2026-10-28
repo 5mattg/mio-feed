@@ -14,7 +14,7 @@ from zoneinfo import ZoneInfo
 import feedparser
 
 MAX_PER_FONTE = 6        # articoli massimi per ogni fonte
-MAX_PER_CARTELLA = 40    # articoli massimi per ogni cartella
+MAX_PER_CARTELLA = 60    # articoli massimi per ogni cartella
 MAX_GIORNI = 21          # ignora articoli piu' vecchi di tanti giorni
 FUSO = ZoneInfo("Europe/Rome")
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
