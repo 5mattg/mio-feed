@@ -1,17 +1,36 @@
 # Formato: Cartella | Nome fonte | URL del feed
 # Le righe che iniziano con # sono commenti e vengono ignorate.
 
-Rock e metal | Blabbermouth | https://blabbermouth.net/feed
-Rock e metal | Loudwire | https://loudwire.com/feed/
-Rock e metal | Metal Injection | https://metalinjection.net/feed
-Rock e metal | Kerrang! | https://www.kerrang.com/feed
-Rock e metal | Angry Metal Guy | https://www.angrymetalguy.com/feed/
+Musica | Rockol | https://www.rockol.it/rss/news
+Musica | Metalitalia | https://www.metalitalia.com/feed/
+Musica | Rolling Stone Italia | https://www.rollingstone.it/feed/
+Musica | AllMusicItalia | https://allmusicitalia.it
+Musica | Loudwire | https://loudwire.com/feed/
+Musica | Kerrang! | https://www.kerrang.com/feed
+Musica | Pitchfork | https://pitchfork.com/feed/feed-news/rss
 
-Italia | Metalitalia | https://www.metalitalia.com/feed/
-Italia | Rockol | https://www.rockol.it/rss/news
-Italia | Rockit | https://www.rockit.it/rss
-Italia | Rolling Stone Italia | https://www.rollingstone.it/feed/
+Cronaca | Repubblica | https://www.repubblica.it/rss/homepage/rss2.0.xml
+Cronaca | Il Post | https://www.ilpost.it/feed/
+Cronaca | RomaToday | https://www.romatoday.it/rss
+Cronaca | Internazionale | https://www.internazionale.it/sitemaps/rss.xml
+Cronaca | Rivista Studio | https://www.rivistastudio.com/feed/
 
-Pop e generalista | Pitchfork news | https://pitchfork.com/feed/feed-news/rss
-Pop e generalista | Pitchfork recensioni | https://pitchfork.com/feed/feed-album-reviews/rss
-Pop e generalista | Billboard | https://www.billboard.com/feed/
+Sport | L'Ultimo Uomo | https://www.ultimouomo.com/feed/
+Sport | Rivista Undici | https://www.rivistaundici.com/feed/
+Sport | ESPN NBA | https://www.espn.com/espn/rss/nba/news
+Sport | Ubitennis | https://www.ubitennis.com/feed/
+Sport | The Race | https://www.the-race.com/feed/
+Sport | Motorsport.com Italia F1 | https://it.motorsport.com/rss/f1/news/
+
+Fumetti | Fumettologica | https://fumettologica.it/feed/
+Fumetti | Lo Spazio Bianco | https://www.lospaziobianco.it/feed/
+Fumetti | Comicus | https://www.comicus.it/feed/
+Fumetti | Newsarama | https://www.newsarama.com/feeds/all | DC, Batman, Superman, Wonder Woman, Justice League, Flash, Green Lantern, Aquaman, Nightwing, Robin, Joker, Absolute
+Fumetti | CBR (Comic Book Resources) | https://www.cbr.com/feed/ | DC, Batman, Superman, Wonder Woman, Justice League, Flash, Green Lantern, Aquaman, Nightwing, Robin, Joker, Absolute
+Fumetti | Bleeding Cool | https://bleedingcool.com/feed/ | DC, Batman, Superman, Wonder Woman, Justice League, Flash, Green Lantern, Aquaman, Nightwing, Robin, Joker, Absolute
+
+Videogiochi | Eurogamer | https://www.eurogamer.net/feed
+Videogiochi | PC Gamer | https://www.pcgamer.com/rss/
+Videogiochi | IGN Italia | https://it.ign.com/feed.xml
+Videogiochi | Nintendo Life | https://www.nintendolife.com/feeds/latest
+Videogiochi | PlayStation Blog | https://feeds.feedburner.com/PSBlog
