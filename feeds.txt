@@ -4,28 +4,26 @@
 Musica | Rockol | https://www.rockol.it/rss/news
 Musica | Metalitalia | https://www.metalitalia.com/feed/
 Musica | Rolling Stone Italia | https://www.rollingstone.it/feed/
-Musica | AllMusicItalia | https://allmusicitalia.it
+Musica | AllMusicItalia | https://www.allmusicitalia.it/feed
 Musica | Loudwire | https://loudwire.com/feed/
-Musica | Kerrang! | https://www.kerrang.com/feed
+Musica | Kerrang! | https://www.kerrang.com/feed.rss
 Musica | Pitchfork | https://pitchfork.com/feed/feed-news/rss
 
 Cronaca | Repubblica | https://www.repubblica.it/rss/homepage/rss2.0.xml
-Cronaca | Il Post | https://www.ilpost.it/feed/
 Cronaca | RomaToday | https://www.romatoday.it/rss
 Cronaca | Internazionale | https://www.internazionale.it/sitemaps/rss.xml
 Cronaca | Rivista Studio | https://www.rivistastudio.com/feed/
 
 Sport | L'Ultimo Uomo | https://www.ultimouomo.com/feed/
 Sport | Rivista Undici | https://www.rivistaundici.com/feed/
-Sport | ESPN NBA | https://www.espn.com/espn/rss/nba/news
+Sport | The Ringer NBA | https://www.theringer.com/rss/nba/index.xml
 Sport | Ubitennis | https://www.ubitennis.com/feed/
 Sport | The Race | https://www.the-race.com/feed/
 Sport | Motorsport.com Italia F1 | https://it.motorsport.com/rss/f1/news/
 
 Fumetti | Fumettologica | https://fumettologica.it/feed/
 Fumetti | Lo Spazio Bianco | https://www.lospaziobianco.it/feed/
-Fumetti | Comicus | https://www.comicus.it/feed/
-Fumetti | Newsarama | https://www.newsarama.com/feeds/all | DC, Batman, Superman, Wonder Woman, Justice League, Flash, Green Lantern, Aquaman, Nightwing, Robin, Joker, Absolute
+Fumetti | Newsarama | https://www.gamesradar.com/feeds.xml | DC, Batman, Superman, Wonder Woman, Justice League, Flash, Green Lantern, Aquaman, Nightwing, Robin, Joker, Absolute
 Fumetti | CBR (Comic Book Resources) | https://www.cbr.com/feed/ | DC, Batman, Superman, Wonder Woman, Justice League, Flash, Green Lantern, Aquaman, Nightwing, Robin, Joker, Absolute
 Fumetti | Bleeding Cool | https://bleedingcool.com/feed/ | DC, Batman, Superman, Wonder Woman, Justice League, Flash, Green Lantern, Aquaman, Nightwing, Robin, Joker, Absolute
 
